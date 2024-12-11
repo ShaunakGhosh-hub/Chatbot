@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Gtech</title>
+    <script>
+        async function sendMessage() {
+            const message = document.getElementById('user-input').value;
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message })
+            });
+            const data = await response.json();
+            document.getElementById('chat-log').innerHTML += `<div>User: ${message}</div>`;
+            document.getElementById('chat-log').innerHTML += `<div>Bot: ${data.response}</div>`;
+            document.getElementById('user-input').value = '';
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const userInput = document.getElementById('user-input');
+            userInput.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    event.preventDefault(); // Prevent the default action (form submission)
+                    sendMessage();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>G-CHAT</h1>
+    <div id="chat-log" ></div>
+    <input type="text" id="user-input" placeholder="Type your message here..." />
+    <button onclick="sendMessage()">Send</button>
+    
+</body>
+<footer>
+    @ShaunakGhosh-hub 2024
+</footer>
+</html>
