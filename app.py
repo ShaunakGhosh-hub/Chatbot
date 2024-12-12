@@ -57,4 +57,4 @@ def fetch_from_wikipedia(query):
     except requests.exceptions.RequestException:
         return "I'm having trouble accessing the web right now."
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
