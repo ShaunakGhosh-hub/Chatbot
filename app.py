@@ -1,5 +1,4 @@
 # app.py
-import os
 import re
 from html import unescape
 from flask import Flask, request, jsonify, render_template
@@ -41,23 +40,24 @@ def fetch_from_wikipedia(query):
         
         # Check if there are search results
         if 'query' in data and 'search' in data['query'] and len(data['query']['search']) > 0:
-            title = data['query']['search'][0]['title']
             snippet = data['query']['search'][0]['snippet']
             
             # Remove HTML tags and unescape HTML entities
             snippet_clean = re.sub(r'<[^>]+>', '', snippet)  # Remove HTML tags
             snippet_clean = unescape(snippet_clean)  # Convert HTML entities
             
-            # Limit snippet to one or two lines (approx. 200 characters)
-            snippet_truncated = snippet_clean[:200].rsplit(' ', 1)[0] + "..." if len(snippet_clean) > 200 else snippet_clean
-            
-            return f"{snippet_truncated}"
+            # Use regex to extract the first complete sentence
+            match = re.search(r'(.*?[.!?])', snippet_clean)
+            if match:
+                return match.group(1).strip()  # Return the first complete sentence
+            else:
+                return "I couldn't find any complete information on that."
+        
         else:
             return "I couldn't find any information on that."
     
     except requests.exceptions.RequestException:
         return "I'm having trouble accessing the web right now."
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))  # Get the PORT from the environment or use 5000 as default
-    app.run(host="0.0.0.0", port=port, debug=False)  # Use debug=False for production
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, debug=True)
