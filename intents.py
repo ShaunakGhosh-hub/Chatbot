@@ -1,7 +1,7 @@
 intents = {
     'greetings': {
         'patterns': ['hello', 'hi', 'hey'],
-        'responses': ['Hello! How can I assist you today?', 'Hi there!', 'Hey, what\'s up?']
+        'responses': ['Hello! How can I assist you today?', 'Hi there champ!', 'Hey, what\'s up?']
     },
     'goodbyes': {
         'patterns': ['bye', 'goodbye', 'see you later'],
@@ -17,11 +17,7 @@ intents = {
     },
     'weather': {
         'patterns': ['what\'s the weather', 'weather today', 'is it going to rain'],
-        'responses': ['The weather is sunny and bright!', 'It looks like it might rain later today.', 'I recommend carrying an umbrella, just in case!']
-    },
-    'time': {
-        'patterns': ['what time is it', 'current time', 'time now'],
-        'responses': ['It\'s currently {current_time}.', 'The time is {current_time}.', 'Right now, it\'s {current_time}.']
+        'responses': ['https://shaunakghosh-hub.github.io/PRODIGY_WD_05/']
     },
     'news': {
         'patterns': ['latest news', 'news update', 'what\'s happening in the world'],
@@ -58,5 +54,9 @@ intents = {
     'movies': {
         'patterns': ['recommend a movie', 'what to watch', 'movie ideas'],
         'responses': ['How about watching Inception?', 'You might enjoy The Matrix.', 'A great classic is Casablanca.']
+    },
+    'GTECH': {
+        'patterns': ['what is gtech', 'what to gchat', 'how can you help me'],
+        'responses': ['It is online learning platform where you can access notes and information for free..lets get learning']
     }
 }
