@@ -56,5 +56,7 @@ def fetch_from_wikipedia(query):
     
     except requests.exceptions.RequestException:
         return "I'm having trouble accessing the web right now."
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))  # Get the PORT from the environment or use 5000 as default
+    app.run(host="0.0.0.0", port=port, debug=False)  # Use debug=False for production
